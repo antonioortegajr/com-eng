@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # \<com-eng\>
 
 
@@ -37,6 +36,16 @@ $ polymer test
 ```
 
 Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
-=======
-# Hi Charlie & Antonio
->>>>>>> a6f2f02a589ec58f879613341fc566805d7a7b3a
+
+# API Endpoints
+URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/
+- GET
+- POST
+- OPTIONS
+https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/listissues
+- GET
+- OPTIONS
+
+GET / only has hard coded demo data GET /listissues uses the DB for dummy data
+
+Refer to post-model.json for POST method body request information
