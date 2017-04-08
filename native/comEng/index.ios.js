@@ -1,44 +1,21 @@
 import React, { Component } from 'react'
-import SideMenu from 'react-native-side-menu'
-import {
-  AppRegistry,
-  StyleSheet,
-  StatusBar,
-  Text,
-  View
-} from 'react-native';
-import { NativeRouter, Route, Link } from 'react-router-native'
-import Home from './components/home'
-import Issue from './components/issue'
-import Nav from './components/nav'
+import { AppRegistry } from 'react-native'
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'react-router-redux'
+import App from './app'
+import store, { history } from './store'
+
 
 export default class comEng extends Component {
-  render() {
-    return (
-      <NativeRouter>
-        <SideMenu
-          menu={<Nav />}>
-            <View style={styles.container}>
-             <StatusBar
-               backgroundColor="blue"
-               barStyle="light-content"
-             />
-              <Route exact path="/" component={Home}/>
-              <Route path="/issue" component={Issue}/>
-            </View>
-          </SideMenu>
-        </NativeRouter>
-    );
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <App />
+                </ConnectedRouter>
+            </Provider>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
 
 AppRegistry.registerComponent('comEng', () => comEng);
