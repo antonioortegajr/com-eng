@@ -20,6 +20,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<!-- material design / paper style -->
+<link rel="import" href="../bower_components/paper-styles/color.html">
+<link rel="import" href="../bower_components/paper-styles/default-theme.html">
+<link rel="import" href="../bower_components/paper-styles/shadow.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="my-icons.html">
 
 <dom-module id="my-app">
@@ -27,8 +32,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         --app-primary-color: #4285f4;
-        --app-secondary-color: black;
-
+        --app-secondary-c
+        color: #fff;olor: black;
         display: block;
       }
 
@@ -105,12 +110,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- selects the view based on the active route -->
         <!-- this is where the page components are summoned (the name attribute of the component here is compared to the one in <iron-selector>) -->
         <iron-pages
+          class="content-wrapper"
             selected="[[page]]"
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
           <login-page name="login"></login-page>
-          <home-page name="home"></home-page>
+          <home-page name="/"></home-page>
           <speak-page name="speak"></speak-page>
           <issues-page name="issues"></issues-page>
           <issue-detail-page name="issue-detail"></issue-detail-page>
