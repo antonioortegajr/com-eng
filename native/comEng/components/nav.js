@@ -6,8 +6,9 @@ import {
     Text,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-native'
+import { List, ListItem } from 'react-native-elements'
 import { setSidemenuStatus } from '../actions/sidemenu'
+import { Icon } from 'react-native-elements'
 
 class Nav extends Component {
     static contextTypes = {
@@ -25,23 +26,25 @@ class Nav extends Component {
     render () {
         return (
             <View style={styles.navs}>
-                <TouchableHighlight
-                    style={styles.nav}
+                <ListItem
+                    hideChevron
+                    iconType="fontawesome"
+                    leftIcon={{ name: 'home'}}
                     onPress={() => {
                         this.props.setSidemenuStatus(!this.props.isOpen)
                         this.history.push('/')
                     }}
-                >
-                    <Text style={styles.navText}>Home</Text>
-                </TouchableHighlight>
-                <TouchableHighlight
+                    title="Home"
+                />
+                <ListItem
+                    hideChevron
+                    leftIcon={{ name: 'file-upload' }}
                     onPress={() => {
                         this.props.setSidemenuStatus(!this.props.isOpen)
                         this.history.push('/issue')
                     }}
-                >
-                    <Text style={styles.navText}>Issue</Text>
-                </TouchableHighlight>
+                    title="Issue"
+                />
             </View>
         )
     }
@@ -50,8 +53,8 @@ class Nav extends Component {
 const styles = StyleSheet.create({
     navs: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: '#ededed',
+        paddingTop: 50,
     },
     nav: {
         paddingHorizontal: 20,

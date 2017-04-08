@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SideMenu from 'react-native-side-menu'
+import { SideMenu } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
     StyleSheet,
@@ -27,7 +27,7 @@ class App extends Component {
                     <View style={styles.container}>
                         <View
                             style={{
-                                backgroundColor: '#f00',
+                                backgroundColor: '#F9F9F9',
                                 justifyContent: 'center',
                                 paddingHorizontal: 10,
                                 height: 70,
@@ -38,7 +38,7 @@ class App extends Component {
                                         this.props.setSidemenuStatus(!this.props.isOpen)
                                     }}
                                     size={32}
-                                    color="#fff"/>
+                                    color="#5A5959"/>
                         </View>
                         <Route exact path="/" component={Home}/>
                         <Route path="/issue" component={Issue}/>
