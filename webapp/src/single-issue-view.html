@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <!-- login wrapper -->
-<dom-module id="my-login">
+<dom-module id="issue-view">
   <template>
     <style>
       :host {
@@ -9,17 +9,18 @@
         width: 196px;
       }
     </style>
+    lol
     <slot></slot>
   </template>
   <script>
-    class MyLogin extends Polymer.Element {
-      static get is() { return 'my-login'; }
+    class IssueView extends Polymer.Element {
+      static get is() { return 'issue-view'; }
       static get properties() {
         return {
         }
       }
     }
 
-    window.customElements.define(MyLogin.is, MyLogin);
+    window.customElements.define(IssueView.is, IssueView);
   </script>
 </dom-module>
