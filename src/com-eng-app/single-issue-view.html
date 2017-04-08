@@ -1,0 +1,25 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!-- login wrapper -->
+<dom-module id="my-login">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 196px;
+      }
+    </style>
+    <slot></slot>
+  </template>
+  <script>
+    class MyLogin extends Polymer.Element {
+      static get is() { return 'my-login'; }
+      static get properties() {
+        return {
+        }
+      }
+    }
+
+    window.customElements.define(MyLogin.is, MyLogin);
+  </script>
+</dom-module>

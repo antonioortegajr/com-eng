@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="com-eng-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h1>Com Eng</h1>
+    <slot></slot>
+
+  </template>
+
+  <script>
+    class MyApplication extends Polymer.Element {
+      static get is() { return 'com-eng-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'com-eng-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MyApplication.is, MyApplication);
+  </script>
+</dom-module>
