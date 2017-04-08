@@ -42,7 +42,8 @@ URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/
 - GET
 - POST
 - OPTIONS
-https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/listissues
+
+URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/listissues
 - GET
 - OPTIONS
 
