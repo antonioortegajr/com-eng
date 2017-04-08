@@ -38,6 +38,8 @@ $ polymer test
 Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
 
 # API Endpoints
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/efe21373bee7c4aa391f)
+
 URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/
 - GET
 - POST
@@ -45,6 +47,10 @@ URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/
 
 URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/listissues
 - GET
+- OPTIONS
+
+URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/issue
+- PUT
 - OPTIONS
 
 GET / only has hard coded demo data GET /listissues uses the DB for dummy data
