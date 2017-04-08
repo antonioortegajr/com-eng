@@ -14,13 +14,13 @@
 				"Jackson",
 				"3rd"
 			],
-			"Summary": "I’m so sick of hitting the same damn pothole time and time again. It’s only gotten worse the last few years and I’m worries about damage to my car and others. I’ll fill it myself if I have to but I would prefer you to send someone out.",
+			"Summary": "I’m so sick of hitting the same damn pothole time and time again. It’s only gotten worse the last few years and I’m worried about damage to my car and others. I’ll fill it myself if I have to but I would prefer you to send someone out.",
 			"Author": "Harry Potter",
 			"Story": "There is a pothole on 3rd and Jackson that just keeps getting worse and no one is doing anything about it. I’m really pissed that the hole hasn’t been filled so if it isn’t repaired soon, I’ll fill it myself.",
 			"Votes": 153
 		},
 		2: {
-			"EventName": "More bike racks in friendly neighbourhoods",
+			"EventName": "More bike racks in friendly neighborhoods",
 			"Topic": "Transportation",
 			"Geo": {
 				"Lat": 44.03462,
@@ -29,11 +29,11 @@
 			"Tags": [
 				"Bikes",
 				"Storage",
-				"Neighbourhoods"
+				"Neighborhoods"
 			],
 			"Summary": "I want to see more bike racks in safe neighborhoods so that the community doesn't need to worry about having our property stolen. I’m also concerned about the safety of getting to the current racks as I was almost jumped.",
 			"Author": "Ronald Weasley",
-			"Story": "The area that I live in is known to have quite a few delinquent youth living here. I think it would be in the best interest of the community to have a plan for putting more bike racks and bike cages in safer, well lit areas that have high foot traffic. Lighting is especially important because someone tried to jump me when I was coming out of work to collect my bike. This is important because it keeps the delinquent activity minimal as most people won’t act if there are lots of people to witness their actions. Maybe put them in the business allys?",
+			"Story": "The area that I live in is known to have quite a few delinquent youth living here. I think it would be in the best interest of the community to have a plan for putting more bike racks and bike cages in safer, well lit areas that have high foot traffic. Lighting is especially important because someone tried to jump me when I was coming out of work to collect my bike. This is important because it keeps the delinquent activity minimal as most people won’t act if there are lots of people to witness their actions. Maybe put them in the business alleys?",
 			"Votes": 950
 		},
 		3: {
@@ -51,7 +51,7 @@
 			],
 			"Summary": "Over the past few weeks I've noticed a lot of shady activity in that area. Several guys in hoods crowded in the alley ways are known to be there during the late night hours. I'm concerned that they are planning something and are up to no good.",
 			"Author": "Hermione Granger",
-			"Story": "There’s been a lot of shady activity in the area around Chambers and West 11th over that few days. The allys always seem to have some kind of group hanging out there and I’m scared that they could do something to the people that are out in the later hours. I feel an increased police presence would be a good action as it would show that we don’t encourage or tolerate that kind of activity. It would also provide a better reaction time in the worst case event that someone ends up getting hurt because of these people.",
+			"Story": "There’s been a lot of shady activity in the area around Chambers and West 11th over that few days. The alleys always seem to have some kind of group hanging out there and I’m scared that they could do something to the people that are out in the later hours. I feel an increased police presence would be a good action as it would show that we don’t encourage or tolerate that kind of activity. It would also provide a better reaction time in the worst case event that someone ends up getting hurt because of these people.",
 			"Votes": 183
 		},
 		4: {
@@ -98,11 +98,11 @@
 			},
 			"Tags": [
 				"Signs",
-				"Vandelism",
+				"Vandalism",
 				"Safety",
 				"Roads"
 			],
-			"Summary": "So I've been noticing that the signs in the area have been disapearing frequently. Can you guys come and put up some new ones that wont be easily stolen? ",
+			"Summary": "So I've been noticing that the signs in the area have been disappearing frequently. Can you guys come and put up some new ones that wont be easily stolen? ",
 			"Author": "John Adams",
 			"Story": "Well, over the last few weeks the stop and yield signs have been disappearing on our street. We need some new signs put up in such a way that its much more difficult for them to be removed. Also, can you guys put up some more stop signs? There's a lot of cars that just fly by and I’m concerned that the kids are gonna end up getting hurt.",
 			"Votes": 223
@@ -142,7 +142,7 @@
 			],
 			"Summary": "I like living in the downtown area thanks to the scene down here. But lately, its been pretty dull and boring. I think a good way to spice things up would be to add some more art such as murals. I saw a real pretty one on the Smith Family Book store but it was all graffiti. Lets do some funded projects!",
 			"Author": "Jenny Williams",
-			"Story": "I like the idea of adding more srtistic installments in the downtown area. Especially in the form of murals and sculptures of the history of the Eugene area. The styling is up for popular vote but I wold love to see some high end graffiti added in! We could do a fundraising event to support the local artists and even pair aspiring youth with the project leaders!",
+			"Story": "I like the idea of adding more artistic installments in the downtown area. Especially in the form of murals and sculptures of the history of the Eugene area. The styling is up for popular vote but I would love to see some high end graffiti added in! We could do a fundraising event to support the local artists and even pair aspiring youth with the project leaders!",
 			"Votes": 876
 		},
 		9: {
@@ -164,7 +164,7 @@
 			"Votes": 16
 		},
 		10: {
-			"EventName": "Light Polution",
+			"EventName": "Light Pollution",
 			"Topic": "Quality of Life",
 			"Geo": {
 				"Lat": 44.11173,
@@ -174,7 +174,7 @@
 				"Amber Lighting",
 				"Excess Lighting",
 				"Light",
-				"Polution"
+				"Pollution"
 			],
 			"Summary": "There are too many lights in my area!!!",
 			"Author": "Liam McNichols",
