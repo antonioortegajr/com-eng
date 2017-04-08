@@ -8,11 +8,11 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="login.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 
-<dom-module id="my-view1">
+<dom-module id="issues-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -22,14 +22,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div class="card">
-      <h1>View 1</h1>
       <div id="response"></div>
     </div>
   </template>
 
   <script>
-    class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
+    class IssuesPage extends Polymer.Element {
+      static get is() { return 'issues-page'; }
 
       handleResponse (response) {
         console.log(response.Events[1].EventName);
@@ -39,6 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         super.ready();
         var response = this;
         $.ajax({
+          context: this,
           url: 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/',
           method: 'GET',
           success: function (response) {
@@ -53,6 +53,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     }
 
-    window.customElements.define(MyView1.is, MyView1);
+    window.customElements.define(IssuesPage.is, IssuesPage);
   </script>
 </dom-module>
