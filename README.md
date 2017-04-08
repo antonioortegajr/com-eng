@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # \<com-eng\>
 
 
@@ -36,3 +37,6 @@ $ polymer test
 ```
 
 Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+=======
+# Hi Charlie & Antonio
+>>>>>>> a6f2f02a589ec58f879613341fc566805d7a7b3a
