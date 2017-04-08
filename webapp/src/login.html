@@ -1,0 +1,151 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!-- login wrapper -->
+<dom-module id="login-block">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 196px;
+      }
+    </style>
+    <slot></slot>
+  </template>
+  <script>
+    class LoginBlock extends Polymer.Element {
+      static get is() { return 'login-block'}
+      static get properties() {
+        return {
+        }
+      }
+    }
+
+    window.customElements.define(LoginBlock.is, LoginBlock);
+  </script>
+</dom-module>
+
+<!-- user image -->
+<dom-module id="login-image">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      img {
+        width: 200px;
+      }
+    </style>
+    <img src="http://orig14.deviantart.net/bf2b/f/2006/173/d/0/avatar_improved_2.gif">
+    <slot></slot>
+  </template>
+  <script>
+    class LoginImage extends Polymer.Element {
+      static get is() { return 'login-image'; }
+      static get properties() {
+        return {
+        }
+      }
+    }
+    window.customElements.define(LoginImage.is, LoginImage);
+  </script>
+</dom-module>
+
+<!-- user name field -->
+<dom-module id="login-username">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    </style>
+    <input name="username">
+  </template>
+  <script>
+    class LoginUserName extends Polymer.Element {
+      static get is() { return 'login-username'; }
+      static get properties() {
+        return {
+        }
+      }
+    }
+    window.customElements.define(LoginUserName.is, LoginUserName);
+  </script>
+</dom-module>
+
+<!-- user password field -->
+<dom-module id="login-password">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    </style>
+    <input type="password" name="password">
+  </template>
+  <script>
+    class LoginPassword extends Polymer.Element {
+      static get is() { return 'login-password'; }
+      static get properties() {
+        return {
+        }
+      }
+    }
+    window.customElements.define(LoginPassword.is, LoginPassword);
+  </script>
+</dom-module>
+
+<!-- login help -->
+<dom-module id="login-help">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+    help!
+  </template>
+  <script>
+    class LoginHelp extends Polymer.Element {
+      static get is() { return 'login-help'; }
+      static get properties() {
+        return {
+        }
+      }
+    }
+    window.customElements.define(LoginHelp.is, LoginHelp);
+  </script>
+</dom-module>
+
+<!-- login button -->
+<dom-module id="login-button">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      button {
+        width: 100%;
+      }
+    </style>
+    <button type="submit">login</button>
+  </template>
+  <script>
+    class LoginButton extends Polymer.Element {
+      static get is() { return 'login-button'; }
+      static get properties() {
+        return {
+        }
+      }
+    }
+    window.customElements.define(LoginButton.is, LoginButton);
+  </script>
+</dom-module>
