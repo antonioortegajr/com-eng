@@ -1,28 +1,76 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
+    View,
+    StyleSheet,
+    TouchableHighlight,
+    Text,
+} from 'react-native'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-native'
+import { setSidemenuStatus } from '../actions/sidemenu'
 
-export default () => (
-  <View style={styles.nav}>
-    <Link
-      to="/">
-      <Text>Home</Text>
-    </Link>
-    <Link
-      to="/issue">
-      <Text>issue</Text>
-    </Link>
-  </View>
-)
+class Nav extends Component {
+    static contextTypes = {
+        router: PropTypes.shape({
+            history: PropTypes.shape({
+                push: PropTypes.func.isRequired,
+                replace: PropTypes.func.isRequired
+            }).isRequired
+        }).isRequired
+    }
+    constructor(props, context) {
+        super(props, context)
+        this.history = context.router.history
+    }
+    render () {
+        return (
+            <View style={styles.navs}>
+                <TouchableHighlight
+                    style={styles.nav}
+                    onPress={() => {
+                        this.props.setSidemenuStatus(!this.props.isOpen)
+                        this.history.push('/')
+                    }}
+                >
+                    <Text style={styles.navText}>Home</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                    onPress={() => {
+                        this.props.setSidemenuStatus(!this.props.isOpen)
+                        this.history.push('/issue')
+                    }}
+                >
+                    <Text style={styles.navText}>Issue</Text>
+                </TouchableHighlight>
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
-  nav: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    navs: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    nav: {
+        paddingHorizontal: 20,
+        marginBottom: 10,
+    },
+    navText: {
+        fontSize: 16,
+    }
 });
+
+
+const mapStateToProps = state => ({
+    isOpen: state.sidemenu.open
+})
+
+const mapDispatchToProps = dispatch => ({
+    setSidemenuStatus(isOpen) {
+        dispatch(setSidemenuStatus(isOpen))
+    },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)

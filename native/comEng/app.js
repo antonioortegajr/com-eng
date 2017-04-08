@@ -12,7 +12,7 @@ import { NativeRouter, Route, Link } from 'react-router-native'
 import Home from './components/home'
 import Issue from './components/issue'
 import Nav from './components/nav'
-import { toggleSideMenu, setSidemenuStatus } from './actions/sidemenu'
+import { setSidemenuStatus } from './actions/sidemenu'
 
 class App extends Component {
     render() {
