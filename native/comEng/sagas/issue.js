@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga'
-import { take, put,takeEvery, fork } from 'redux-saga/effects'
+import { take, put,takeEvery, fork, select } from 'redux-saga/effects'
 import {
     REQUEST_ISSUES
 } from '../actions/issues'
@@ -11,13 +11,15 @@ import {
     VOTE_ISSUE_SUCCESS,
     VOTE_ISSUE_FAIL,
 } from '../actions/issue'
-import config from '../config'
 
 export function* createIssuesAsync() {
     while (true) {
         const { issue } = yield take(CREATE_ISSUE)
+        const { auth } = yield select()
         try {
             issue.issueID = `${(new Date).getTime()}`
+            issue.Creator = auth.user.id
+            issue.Author = `${auth.user.first_name} ${auth.user.last_name}`
             const issues = yield fetch(
                 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/',
                 {
@@ -39,6 +41,7 @@ export function* createIssuesAsync() {
 export function* voteIssueAsync() {
     while (true) {
         const { issueID } = yield take(VOTE_ISSUE)
+        const { auth } = yield select()
         try {
             const respo = fetch('https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/issue', {
                 method: 'PUT',
@@ -46,7 +49,7 @@ export function* voteIssueAsync() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ issueID, voteUsers: config.userID })
+                body: JSON.stringify({ issueID, voteUsers: auth.user.id })
             })
             .then(resp => resp.json())
             yield put({ type: VOTE_ISSUE_SUCCESS, issueID })

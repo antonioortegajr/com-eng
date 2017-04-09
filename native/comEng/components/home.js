@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import {
-  StyleSheet,
-  TextInput,
-  Text,
-  View,
-  PixelRatio
+    ScrollView,
+    StyleSheet,
+    TextInput,
+    Text,
+    RefreshControl,
+    View,
+    PixelRatio
 } from 'react-native';
 import { requestIssues } from '../actions/issues'
 import { Card, ListItem, Icon } from 'react-native-elements'
@@ -20,9 +22,24 @@ class Home extends Component {
             allIds: []
         }
     }
-
+    static contextTypes = {
+        router: PropTypes.shape({
+            history: PropTypes.shape({
+                push: PropTypes.func.isRequired,
+                replace: PropTypes.func.isRequired
+            }).isRequired
+        }).isRequired
+    }
+    constructor(props, context) {
+        super(props, context)
+        this.history = context.router.history
+    }
     componentDidMount() {
-        this.props.requestIssues()
+        if (!this.props.user) {
+            this.history.push('/auth')
+        } else {
+            this.props.requestIssues()
+        }
     }
     render() {
         return (
@@ -103,7 +120,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-    issues: state.issues
+    issues: state.issues,
+    user: state.auth.user,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

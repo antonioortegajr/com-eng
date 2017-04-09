@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -14,8 +14,23 @@ import config from '../config'
 const { Item } = Picker
 
 class Issue extends Component {
-    constructor() {
+    static contextTypes = {
+        router: PropTypes.shape({
+            history: PropTypes.shape({
+                push: PropTypes.func.isRequired,
+                replace: PropTypes.func.isRequired
+            }).isRequired
+        }).isRequired
+    }
+    componentWillMount() {
+        if (!this.props.user) {
+            this.history.push('/auth')
+        }
+    }
+    constructor(props, context) {
         super()
+        super(props, context)
+        this.history = context.router.history
         this.state = {
             showPicker: false
         }
@@ -113,7 +128,8 @@ class Issue extends Component {
 }
 
 const mapStateToProps = state => ({
-    issue: state.issue
+    issue: state.issue,
+    user: state.auth.user,
 })
 
 const mapDispatchToProps = dispatch => ({

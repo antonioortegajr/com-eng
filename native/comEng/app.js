@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { SideMenu } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
@@ -7,12 +7,14 @@ import {
     Text,
     ScrollView,
     View,
+    Linking,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { NativeRouter, Route, Link } from 'react-router-native'
+import { NativeRouter, Route, Link, Redirect } from 'react-router-native'
 import Home from './components/home'
 import Issue from './components/issue'
 import Nav from './components/nav'
+import Auth from './components/auth'
 import { setSidemenuStatus } from './actions/sidemenu'
 
 class App extends Component {
@@ -42,7 +44,7 @@ class App extends Component {
                                     color="#5A5959"/>
                         </View>
                         <Route exact path="/" component={Home}/>
-                        {/* <Route exact path="/" component={Issue}/> */}
+                        <Route path="/auth" component={Auth}/>
                         <Route path="/issue" component={Issue}/>
                     </ScrollView>
                 </SideMenu>
@@ -59,7 +61,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-    isOpen: state.sidemenu.open
+    isOpen: state.sidemenu.open,
+    user: state.auth.user,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -67,6 +70,5 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setSidemenuStatus(isOpen))
     },
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
