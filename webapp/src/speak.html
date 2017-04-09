@@ -1,0 +1,145 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="./shared-styles.html">
+<dom-module id="speak-page">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+    <h1>Issues</h1>
+    <speak-form></speak-form>
+  </template>
+  <script>
+    Polymer({
+      is: 'speak-page',
+      ready: function () {
+        
+      },
+    });
+
+  </script>
+</dom-module>
+
+<link rel="import" href="../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower/bower_components/iron-icon/maps-icons.html">
+<dom-module id="speak-form">
+<template>
+  <style include="shared-styles">
+  .indigo {
+    background-color: var(--paper-indigo-500);
+    color: white;
+
+    --paper-button-raised-keyboard-focus: {
+      background-color: var(--paper-pink-a200) !important;
+      color: white !important;
+    };
+  }
+  </style>
+  <style>
+    .card {
+      padding: 0;
+    }
+
+    #speak-form-container,
+    .wrapper-btns {
+      padding: 16px;
+    }
+
+    .wrapper-btns {
+      padding-top: 0;
+    }
+
+    .card-border {
+      /*border-top: 1px solid rgba(0,0,0,.1);*/
+    }
+  </style>card
+  <iron-ajax
+
+    id="xhr"
+    method="post"
+    params='{{params}}'
+    content-type="application/json"
+    handle-as="text"
+    on-response="handleSubmitResponse"
+    on-error="handleSubmitError"></iron-ajax>
+  <h1>Speak and be Heard</h1>
+  <div class="card">
+    <div id="speak-form-container">
+    <form id="ajaxForm">
+      <paper-input value='{{formData.issueName::change}}' on-change='issueNameChangeHandler' id="issueName" name="issueName" label="Title" type="text" autofocus
+        placeholder="Enter your topic title" autosave="test">
+      </paper-input>
+
+      <paper-textarea rows="10" value='{{formData.Story::input}}' on-change='storyChangeHandler' id="Story" name="Story" label="Be Heard" placeholder="What do you want to say?" autosave="text"></paper-textarea>
+
+      <paper-input value='{{formData.Tags::change}}' id="tags" name="Tags" label="Tag it" placeholder="Downtown, EMX, Whiteaker, IDX Broker">
+    </form>
+    </div>
+    <div class="card-border">
+      <div class="wrapper-btns">
+        <paper-button raised class="indigo" on-tap="postLogin">
+          Speak!
+        </paper-button>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+Polymer({
+  is: 'speak-form',
+  properties: {
+    formData: {
+      type: Object,
+      value: {
+        Creator: "testUser",
+        Author: "Bob Saget",
+        issueName: "",
+        Story: "",
+        Tags: ""
+      }
+    },
+    ajaxBody: {
+      type: String,
+      computed: 'processBody(title, Story)'
+    },
+    storedTopic: Object,
+    error: String
+  },
+  issueNameChangeHandler: function(e) {
+    console.log(this.formData);
+  },
+  storyChangeHandler: function(e) {
+    console.log(e);
+  },
+  handleSubmitResponse: function(e) {
+    var response = JSON.parse(event.detail.response);
+
+    console.log(response);
+  },
+  handleSubmitError: function(e) {
+    console.log(e.detail.request.xhr.response);
+  },
+  _setReqBody: function () {
+
+    this.$.xhr.body = this.formData;
+    console.log(this.formData);
+    console.log(this.$.xhr.body);
+  },
+  postLogin: function () {
+    this.$.xhr.url = 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/';
+    this._setReqBody();
+    this.$.xhr.generateRequest();
+  }
+})
+</script>
+</dom-module>
