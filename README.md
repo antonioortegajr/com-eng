@@ -38,10 +38,11 @@ $ polymer test
 Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
 
 # API Endpoints
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/feb2dd72775b126c547f)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/ef5e5d0cb73ae66283c0)
+
+Refer to the Data models in the API folder for examples of how to complete these API calls.
 
 URL: https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/
-- GET
 - POST
 - OPTIONS
 
