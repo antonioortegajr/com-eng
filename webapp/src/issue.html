@@ -11,7 +11,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="single-issue-view.html">
-
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<iron-ajax
+  auto
+  on-response="_handleResponse"
+  handle-as="json"
+  url="https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/listissues"></iron-ajax>
 <dom-module id="issue-detail-page">
   <template>
     <style include="shared-styles">
@@ -21,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
     </style>
-
+    <h1>Here</h1>
     <issue-block>
       
     </issue-block>
@@ -30,6 +36,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class IssueDetailPage extends Polymer.Element {
       static get is() { return 'issue-detail-page'; }
+      _handleResponse(e) {
+        console.log('hi');
+        console.log(e.Events[1].Story);
+      }
     }
 
     window.customElements.define(IssueDetailPage.is, IssueDetailPage);
