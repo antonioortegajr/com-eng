@@ -11,6 +11,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="assets.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="../bower_components/google-signin/google-signin.html">
+    <link rel="import" href="../elements/google-signin-status.html">
+    <link rel="import" href="../elements/google-plus-friends.html">
+    <link rel="import" href="../elements/picasa-photo-uploads.html">
 
 <dom-module id="login-page">
   <template>
@@ -39,17 +46,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </script>
 </dom-module>
 
-<link rel="import" href="../bower_components/polymer/polymer.html">
-
 <!-- login wrapper -->
 <dom-module id="login-block">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         display: block;
       }
     </style>
-    <slot></slot>
+    <div class="card">
+      <slot></slot>
+    </div>
   </template>
   <script>
     class LoginBlock extends Polymer.Element {
@@ -70,9 +77,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
-        width: 200px;
+        width: 140px;
         margin: auto;
-        font-size: 30px;
       }
     </style>
     <slot></slot>
@@ -98,10 +104,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: inline-block;
         margin-bottom: 10px;
         text-align: center;
-        width: 90px;
+        width: 65px;
+      }
+      img {
+        width: 50px;
       }
     </style>
-    f
+    <img src="/assets/branding/Images/Button%20Icons/Facebook%20Icon%20-%20Circle.svg" title="Click here to login with your facebook account">
   </template>
   <script>
     class FacebookLogin extends Polymer.Element {
@@ -110,6 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return {
         }
       }
+      
     }
     window.customElements.define(FacebookLogin.is, FacebookLogin);
   </script>
@@ -123,10 +133,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: inline-block;
         margin-bottom: 10px;
         text-align: center;
-        width: 90px;
+        width: 65px;
+      }
+      img {
+        width: 50px;
       }
     </style>
-    g
+    <img title="Click here to login with your Google+ account" src="/assets/branding/Images/Button%20Icons/Google%20Plus%20Icon%20-%20Circle.svg">
   </template>
   <script>
     class GoogleLogin extends Polymer.Element {
@@ -150,7 +163,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
       }
     </style>
-    help!
+    need help?
   </template>
   <script>
     class LoginHelp extends Polymer.Element {
