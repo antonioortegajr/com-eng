@@ -1,17 +1,20 @@
-import React, { Component } from 'react'
-import SideMenu from 'react-native-side-menu'
+import React, { Component, PropTypes } from 'react'
+import { SideMenu } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
     StyleSheet,
     StatusBar,
     Text,
-    View
+    ScrollView,
+    View,
+    Linking,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { NativeRouter, Route, Link } from 'react-router-native'
+import { NativeRouter, Route, Link, Redirect } from 'react-router-native'
 import Home from './components/home'
 import Issue from './components/issue'
 import Nav from './components/nav'
+import Auth from './components/auth'
 import { setSidemenuStatus } from './actions/sidemenu'
 
 class App extends Component {
@@ -24,10 +27,10 @@ class App extends Component {
                         this.props.setSidemenuStatus(isOpen)
                     }}
                     menu={<Nav />}>
-                    <View style={styles.container}>
+                    <ScrollView style={styles.container}>
                         <View
                             style={{
-                                backgroundColor: '#f00',
+                                backgroundColor: '#F9F9F9',
                                 justifyContent: 'center',
                                 paddingHorizontal: 10,
                                 height: 70,
@@ -38,11 +41,12 @@ class App extends Component {
                                         this.props.setSidemenuStatus(!this.props.isOpen)
                                     }}
                                     size={32}
-                                    color="#fff"/>
+                                    color="#5A5959"/>
                         </View>
                         <Route exact path="/" component={Home}/>
+                        <Route path="/auth" component={Auth}/>
                         <Route path="/issue" component={Issue}/>
-                    </View>
+                    </ScrollView>
                 </SideMenu>
             </NativeRouter>
         );
@@ -57,7 +61,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-    isOpen: state.sidemenu.open
+    isOpen: state.sidemenu.open,
+    user: state.auth.user,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -65,6 +70,5 @@ const mapDispatchToProps = dispatch => ({
         dispatch(setSidemenuStatus(isOpen))
     },
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
