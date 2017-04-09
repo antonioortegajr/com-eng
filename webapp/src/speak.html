@@ -30,8 +30,9 @@
 <link rel="import" href="../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="../bower_components/paper-styles/color.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower/bower_components/iron-icon/maps-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-if.html">
 <dom-module id="speak-form">
 <template>
   <style include="shared-styles">
@@ -58,13 +59,8 @@
     .wrapper-btns {
       padding-top: 0;
     }
-
-    .card-border {
-      /*border-top: 1px solid rgba(0,0,0,.1);*/
-    }
   </style>
   <iron-ajax
-
     id="xhr"
     method="post"
     params='{{params}}'
@@ -76,11 +72,11 @@
   <div class="card">
     <div id="speak-form-container">
     <form id="ajaxForm">
-      <paper-input value='{{formData.issueName::change}}' on-change='issueNameChangeHandler' id="issueName" name="issueName" label="Title" type="text" autofocus
-        placeholder="Enter your topic title" autosave="test">
+      <response-template response="[[response]]"></response-template>
+      <paper-input required minlength="3" error-message="Please be descriptive!" value='{{formData.issueName::change}}' id="issueName" name="issueName" label="Title" type="text" placeholder="Enter your topic title" autosave="test">
       </paper-input>
 
-      <paper-textarea rows="10" value='{{formData.Story::input}}' on-change='storyChangeHandler' id="Story" name="Story" label="Be Heard" placeholder="What do you want to say?" autosave="text"></paper-textarea>
+      <paper-textarea rows="10" value='{{formData.Story::input}}' id="Story" name="Story" label="Be Heard" placeholder="What do you want to say?" autosave="text"></paper-textarea>
 
       <paper-input value='{{formData.Tags::change}}' id="tags" name="Tags" label="Tag it" placeholder="Downtown, EMX, Whiteaker, IDX Broker">
     </form>
@@ -88,11 +84,14 @@
     <div class="card-border">
       <div class="wrapper-btns">
         <paper-button raised class="indigo" on-tap="postLogin">
-          Speak!
+          <iron-icon icon="icons:speaker-notes"></iron-icon>
+          &nbsp;Speak!
         </paper-button>
       </div>
     </div>
   </div>
+
+  </template>
 </template>
 <script>
 Polymer({
@@ -108,32 +107,47 @@ Polymer({
         Tags: ""
       }
     },
-    ajaxBody: {
-      type: String,
-      computed: 'processBody(title, Story)'
-    },
     storedTopic: Object,
-    error: String
-  },
-  issueNameChangeHandler: function(e) {
-    console.log(this.formData);
-  },
-  storyChangeHandler: function(e) {
-    console.log(e);
+    response: {
+      type: Object,
+      value: {},
+      notify: true,
+      reflectToAttribute: true
+    }
   },
   handleSubmitResponse: function(e) {
-    var response = JSON.parse(event.detail.response);
-
-    console.log(response);
+    var response = JSON.parse(e.detail.response);
+    if (response.errorMessage) {
+      this.response = Object.assign({}, this.response, { 
+        message: response.errorMessage,
+        className: 'error-message'
+      });
+    } else {
+      this.response = Object.assign({}, this.response, {
+        message: response.body.message,
+        className: 'success-message',
+        id: response.body.id,
+        error: false
+      });
+    }
   },
   handleSubmitError: function(e) {
-    console.log(e.detail.request.xhr.response);
+    this.response.message = e.detail.request.xhr.response;
+    this.response.id = false;
+  },
+  _showErrors() {
   },
   _setReqBody: function () {
-
-    this.$.xhr.body = this.formData;
-    console.log(this.formData);
-    console.log(this.$.xhr.body);
+    var storyLength = this.formData.Story.length,
+      issueNameLength = this.formData.issueName.length;
+    if (storyLength > 8 || issueNameLength > 3) {
+      this.$.xhr.body = this.formData;
+    } else {
+      this.response = Object.assign({}, this.response, { 
+        message: 'Not enough characters. Please be more descriptive in your title or story.',
+        className: 'error-message'
+      });
+    }
   },
   postLogin: function () {
     this.$.xhr.url = 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/';
@@ -141,5 +155,33 @@ Polymer({
     this.$.xhr.generateRequest();
   }
 })
+</script>
+</dom-module>
+
+<dom-module id="response-template">
+<template>
+<style include="shared-styles">
+.alert {
+  padding: 15px;
+}
+.error-message {
+  color: #f44336;
+}
+
+.success-message {
+  color: #43a047;
+}
+</style>
+<div class$="[[response.className]]">[[response.message]]</div>
+</template>
+<script>
+  Polymer({
+    is: 'response-template',
+    properties: {
+      response: {
+        type: Object
+      }
+    }
+  })
 </script>
 </dom-module>
