@@ -80,7 +80,9 @@
         placeholder="Enter your topic title" autosave="test">
       </paper-input>
 
-      <paper-textarea value='{{formData.Story::input}}' on-change='storyChangeHandler' id="Story" name="Story" label="Be Heard" placeholder="What do you want to say?" autosave="text"></paper-textarea>
+      <paper-textarea rows="10" value='{{formData.Story::input}}' on-change='storyChangeHandler' id="Story" name="Story" label="Be Heard" placeholder="What do you want to say?" autosave="text"></paper-textarea>
+
+      <paper-input value='{{formData.Tags::change}}' id="tags" name="Tags" label="Tag it" placeholder="Downtown, EMX, Whiteaker, IDX Broker">
     </form>
     </div>
     <div class="card-border">
@@ -102,7 +104,8 @@ Polymer({
         Creator: "testUser",
         Author: "Bob Saget",
         issueName: "",
-        Story: ""
+        Story: "",
+        Tags: ""
       }
     },
     ajaxBody: {
@@ -134,13 +137,8 @@ Polymer({
   },
   postLogin: function () {
     this.$.xhr.url = 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/';
-    this.formData.inputName = document.querySelector('input[name=issueName]').value;
-    this.formData.Story = document.querySelector('textarea[name=Story]').value;
     this._setReqBody();
     this.$.xhr.generateRequest();
-  },
-  postRegister: function () {
-
   }
 })
 </script>
