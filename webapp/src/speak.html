@@ -94,6 +94,7 @@ Polymer({
         Author: "Bob Saget",
         issueName: "",
         Story: "",
+        Summary: "",
         Tags: ""
       }
     },
@@ -125,19 +126,9 @@ Polymer({
     this.response.message = e.detail.request.xhr.response;
     this.response.id = false;
   },
-  _showErrors() {
-  },
   _setReqBody: function () {
-    var storyLength = this.formData.Story.length,
-      issueNameLength = this.formData.issueName.length;
-    if (storyLength > 8 || issueNameLength > 3) {
-      this.$.xhr.body = this.formData;
-    } else {
-      this.response = Object.assign({}, this.response, { 
-        message: 'Not enough characters. Please be more descriptive in your title or story.',
-        className: 'error-message'
-      });
-    }
+    this.formData.Summary = this.formData.Story.substring(0, 140);
+    this.$.xhr.body = this.formData;
   },
   postLogin: function () {
     this.$.xhr.url = 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/';

@@ -53,6 +53,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+
+      .card {
+        margin: 0 auto;
+      }
+
+      @media(min-width: 768px) {
+        .card {
+          width: 50%;
+        }
+      }
+
+      @media(min-width: 1200px) {
+        .card {
+          width: 40%;
+        }
+      }
     </style>
     <div class="card">
       <slot></slot>

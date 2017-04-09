@@ -14,9 +14,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-request.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/image-icons.html">
+<app-route
+  route="{{route}}"
+  pattern="/:issue_id"
+  data="{{routeData}}"></app-route>
+
 <dom-module id="issues-page">
   <template>
     <style include="shared-styles iron-flex iron-flex-alignment">
@@ -26,6 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
     </style>
+    <h1>{{routeData}}</h1>
     <single-event></single-event>
   </template>
 
@@ -89,18 +96,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       handle-as="json"
       on-response="_handleResponse"
       debounce-duration="300"></iron-ajax>
-
+  <iron-ajax
+    id="upvoteAjax"
+    method="PUT"
+    content-type="application/json"
+    handle-as="text"
+    on-response="handlePutResponse"
+    on-error="handlePuterror"></iron-ajax>
   <div class="layout">
     <template is="dom-repeat" id="single-event-inner" items="{{events}}" filter="_shortenStory" observe="Story">
-      <paper-card heading="{{item.issueName}}" image="http://placehold.it/750x150/FFC107/000000?text=%20" alt="{{item.issueName}}">
+      <paper-card heading="{{item.issueName}}" image="http://placehold.it/750x150/00bcd4/000000?text=%20" alt="{{item.issueName}}">
         <div class="card-content">
         <p><small>{{item.Author}}</small></p>
-          {{item.Story}}
+          {{item.Summary}}
         </div>
         <div class="card-actions">
-          <paper-button class="indigo" raised>
-            <iron-icon icon="image:exposure-plus-1"></iron-icon>
-          </paper-button>
+        <paper-button on-tap="_upvote" class="indigo" raised>
+          <iron-icon icon="icons:thumb-up"></iron-icon>
+          &nbsp;{{item.Votes}}
+        </paper-button>
         </div>
       </paper-card>
     </template>
@@ -116,6 +130,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
     ready: function () {
 
+    },
+    _setReqBody(params) {
+
+    },
+    _upvote(oEvent) {
+      var params = {};
+      params.issueID = oEvent.model.get('item.issueID');
+      params.voteUsers = 'facebookID';
+      this.$.upvoteAjax.url = 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/issue';
+      this.$.upvoteAjax.body = params;
+      this.$.upvoteAjax.generateRequest();
     },
     _shortenStory: function(issue) {
       if (typeof(issue.Story) != 'undefined') {

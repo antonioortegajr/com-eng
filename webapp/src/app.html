@@ -20,6 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <!-- material design / paper style -->
 <link rel="import" href="../bower_components/paper-styles/color.html">
 <link rel="import" href="../bower_components/paper-styles/default-theme.html">
@@ -27,13 +28,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="my-icons.html">
 
+<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="app-data.html">
+<link rel="import" href="auth0-login.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-if.html">
+
 <dom-module id="my-app">
   <template>
     <style>
       :host {
         --app-primary-color: #4285f4;
-        --app-secondary-c
-        color: #fff;olor: black;
+        --app-secondary-color: black;
         display: block;
       }
 
@@ -86,16 +91,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="login" href="/login">Login</a>
-          <a name="home" href="/">Home</a>
-          <a name="speak" href="/speak">Speak</a>
-          <a name="issues" href="/issues">Issues</a>
-          <a name="issue-detail" href="/issue">Single Issue Details</a>
-        </iron-selector>
-      </app-drawer>
+      <iron-localstorage 
+            name="user-storage" 
+            value="{{storedUser}}" 
+            on-iron-localstorage-load="initStoredUser"></iron-localstorage>
+        <app-data key="userData" data="{{storedUser}}"></app-data>
+        <app-drawer id="drawer" slot="drawer">
+      <app-toolbar>Navigation</app-toolbar> 
+      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <a name="speak" href="/speak">
+          <iron-icon icon="icons:speaker-notes"></iron-icon>&nbsp;
+          Be Heard
+        </a>
+        <a name="issues" href="/issues">
+          <iron-icon icon="icons:view-list"></iron-icon>
+          Issues
+        </a>
+        <a name="issue-detail" href="/issue">Single Issue Details</a>
+      </iron-selector>
+    </app-drawer>
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
@@ -104,6 +118,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>Spoke</div>
+            <auth0-login
+              client-id="sAgt2Z5gUw1X2zDHYpvbtQ562ZjmcAt7"
+              domain="spokeapp.auth0.com"
+              redirect-url="http://localhost:8081"></auth0-login>
           </app-toolbar>
         </app-header>
 
@@ -138,7 +156,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             reflectToAttribute: true,
             observer: '_pageChanged',
           },
+          storedUser: {
+            type: Object,
+            notify: true
+          }
         };
+      }
+
+      initStoredUser () {
+        // if entering site on the secret quotes page, verify if logged in and if so, preload a secret quote
+        console.log(this.storedUser);
+        if (this.storedUser.loggedin) {
+            // this.getSecretQuote();
+        }
       }
 
       static get observers() {
