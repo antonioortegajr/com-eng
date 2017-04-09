@@ -10,22 +10,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="assets.html">
 
 <dom-module id="login-page">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
     </style>
           <login-block>
-              <login-image></login-image>
-              <login-username></login-username>
-              <login-password></login-password>
+            <spoke-wrapper></spoke-wrapper>
+              <login-methods>
+                <facebook-login></facebook-login>
+                <google-login></google-login>
+              </login-methods>
               <login-help></login-help>
-              <login-button></login-button>
           </login-block>
   </template>
 
@@ -46,7 +47,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
-        width: 196px;
       }
     </style>
     <slot></slot>
@@ -64,81 +64,79 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </script>
 </dom-module>
 
-<!-- user image -->
-<dom-module id="login-image">
+<!-- login method wrapper -->
+<dom-module id="login-methods">
   <template>
     <style>
       :host {
         display: block;
-      }
-      img {
         width: 200px;
+        margin: auto;
+        font-size: 30px;
       }
     </style>
-    <img src="http://orig14.deviantart.net/bf2b/f/2006/173/d/0/avatar_improved_2.gif">
     <slot></slot>
   </template>
   <script>
-    class LoginImage extends Polymer.Element {
-      static get is() { return 'login-image'; }
+    class LoginMethods extends Polymer.Element {
+      static get is() { return 'login-methods'}
       static get properties() {
         return {
         }
       }
     }
-    window.customElements.define(LoginImage.is, LoginImage);
+
+    window.customElements.define(LoginMethods.is, LoginMethods);
   </script>
 </dom-module>
 
-<!-- user name field -->
-<dom-module id="login-username">
+<!-- facebook login -->
+<dom-module id="facebook-login">
   <template>
     <style>
       :host {
-        display: block;
-      }
-      input {
-        width: 100%;
+        display: inline-block;
         margin-bottom: 10px;
+        text-align: center;
+        width: 90px;
       }
     </style>
-    <input name="username">
+    f
   </template>
   <script>
-    class LoginUserName extends Polymer.Element {
-      static get is() { return 'login-username'; }
+    class FacebookLogin extends Polymer.Element {
+      static get is() { return 'facebook-login'; }
       static get properties() {
         return {
         }
       }
     }
-    window.customElements.define(LoginUserName.is, LoginUserName);
+    window.customElements.define(FacebookLogin.is, FacebookLogin);
   </script>
 </dom-module>
 
-<!-- user password field -->
-<dom-module id="login-password">
+<!-- google plus login -->
+<dom-module id="google-login">
   <template>
     <style>
       :host {
-        display: block;
-      }
-      input {
-        width: 100%;
+        display: inline-block;
         margin-bottom: 10px;
+        text-align: center;
+        width: 90px;
       }
     </style>
-    <input type="password" name="password">
+    g
   </template>
   <script>
-    class LoginPassword extends Polymer.Element {
-      static get is() { return 'login-password'; }
+    class GoogleLogin extends Polymer.Element {
+      static get is() { return 'google-login'; }
       static get properties() {
         return {
         }
       }
     }
-    window.customElements.define(LoginPassword.is, LoginPassword);
+    window.customElements.define(GoogleLogin.is, GoogleLogin);
   </script>
 </dom-module>
 
@@ -149,6 +147,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
         margin-bottom: 10px;
+        text-align: center;
       }
     </style>
     help!
@@ -162,30 +161,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
     window.customElements.define(LoginHelp.is, LoginHelp);
-  </script>
-</dom-module>
-
-<!-- login button -->
-<dom-module id="login-button">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-      button {
-        width: 100%;
-      }
-    </style>
-    <button type="submit">login</button>
-  </template>
-  <script>
-    class LoginButton extends Polymer.Element {
-      static get is() { return 'login-button'; }
-      static get properties() {
-        return {
-        }
-      }
-    }
-    window.customElements.define(LoginButton.is, LoginButton);
   </script>
 </dom-module>
