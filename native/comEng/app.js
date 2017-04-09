@@ -5,7 +5,8 @@ import {
     StyleSheet,
     StatusBar,
     Text,
-    View
+    ScrollView,
+    View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { NativeRouter, Route, Link } from 'react-router-native'
@@ -24,7 +25,7 @@ class App extends Component {
                         this.props.setSidemenuStatus(isOpen)
                     }}
                     menu={<Nav />}>
-                    <View style={styles.container}>
+                    <ScrollView style={styles.container}>
                         <View
                             style={{
                                 backgroundColor: '#F9F9F9',
@@ -41,8 +42,9 @@ class App extends Component {
                                     color="#5A5959"/>
                         </View>
                         <Route exact path="/" component={Home}/>
+                        {/* <Route exact path="/" component={Issue}/> */}
                         <Route path="/issue" component={Issue}/>
-                    </View>
+                    </ScrollView>
                 </SideMenu>
             </NativeRouter>
         );

@@ -1,4 +1,5 @@
 import { RECEIVED_ISSUES } from '../actions/issues'
+import { uniqWith, isEqual } from 'lodash'
 
 export const initialState = {
     byId: {
@@ -6,7 +7,6 @@ export const initialState = {
     },
     allIds: []
 }
-
 
 export default issues = (state = initialState, action) => {
     switch (action.type) {
@@ -19,7 +19,7 @@ export default issues = (state = initialState, action) => {
                         [issue.issueID]: issue
                     }),{})
                 },
-                allIds: [ ...state.allIds, ...action.issues.map(issue => issue.issueID) ]
+                allIds: uniqWith([ ...state.allIds, ...action.issues.map(issue => issue.issueID) ], isEqual)
             }
             break;
         default:
