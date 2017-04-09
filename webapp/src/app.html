@@ -32,6 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="app-data.html">
 <link rel="import" href="auth0-login.html">
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-if.html">
+<link rel="import" href="assets.html">
 
 <dom-module id="my-app">
   <template>
@@ -99,6 +100,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-drawer id="drawer" slot="drawer">
       <app-toolbar>Navigation</app-toolbar> 
       <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <a name="home" href="/">
+          <iron-icon icon="icons:home"></iron-icon>&nbsp;
+          Home
+        </a>
         <a name="speak" href="/speak">
           <iron-icon icon="icons:speaker-notes"></iron-icon>&nbsp;
           Be Heard
@@ -107,7 +112,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-icon icon="icons:view-list"></iron-icon>
           Issues
         </a>
-        <a name="issue-detail" href="/issue">Single Issue Details</a>
       </iron-selector>
     </app-drawer>
 
@@ -117,7 +121,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenspagees reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>Spoke</div>
+            <div main-title>
+              Spoke
+            </div>
             <auth0-login
               client-id="sAgt2Z5gUw1X2zDHYpvbtQ562ZjmcAt7"
               domain="spokeapp.auth0.com"
@@ -134,6 +140,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="view404"
             role="main">
           <login-page name="login"></login-page>
+          <about-page name="about"></about-page>
           <home-page name="home"></home-page>
           <speak-page name="speak"></speak-page>
           <issues-page name="issues"></issues-page>

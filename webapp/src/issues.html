@@ -80,12 +80,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
+    a paper-button {
+      color: #555;
+    }
+
     paper-button {
       padding: 4px;
     }
 
     paper-card div.card-content {
       margin: 16px;
+    }
+
+    .pull-right {
+      float: right;
+    }
+
+    blockquote {
+      color: #999;
+      border-left: 4px solid rgba(0,0,0,.1);
+      margin: 0;
+      padding-left: 16px;
     }
   </style>
   <iron-ajax
@@ -105,16 +120,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     on-error="handlePuterror"></iron-ajax>
   <div class="layout">
     <template is="dom-repeat" id="single-event-inner" items="{{events}}" filter="_shortenStory" observe="Story">
-      <paper-card heading="{{item.issueName}}" image="http://placehold.it/750x150/00bcd4/000000?text=%20" alt="{{item.issueName}}">
+      <paper-card heading="{{item.issueName}}" image="http://placehold.it/750x150/4285F4/4285f4?text=%20" alt="{{item.issueName}}">
         <div class="card-content">
         <p><small>{{item.Author}}</small></p>
-          {{item.Summary}}
+          <blockquote>
+            {{item.Summary}}
+          </blockquote>
         </div>
         <div class="card-actions">
-        <paper-button on-tap="_upvote" class="indigo" raised>
-          <iron-icon icon="icons:thumb-up"></iron-icon>
-          &nbsp;{{item.Votes}}
-        </paper-button>
+          <paper-button on-tap="_upvote" class="indigo" raised>
+            <iron-icon icon="icons:thumb-up"></iron-icon>
+            &nbsp;{{item.Votes}}
+          </paper-button>
+            <a href="/issues/{{item.issueID}}">
+              <paper-button raised class="pull-right">
+                Read
+                <iron-icon icon="icons:forward"></iron-icon>
+              </paper-button>
+            </a>
         </div>
       </paper-card>
     </template>
