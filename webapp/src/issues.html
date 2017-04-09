@@ -10,49 +10,86 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
-<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <dom-module id="issues-page">
   <template>
-    <style include="shared-styles">
+    <style include="shared-styles iron-flex iron-flex-alignment">
       :host {
         display: block;
 
         padding: 10px;
       }
     </style>
-    <div class="card">
-      <div id="response"></div>
-    </div>
+    <h1>Issues</h1>
+    <single-event></single-event>
   </template>
 
   <script>
-    class IssuesPage extends Polymer.Element {
-      static get is() { return 'issues-page'; }
-
-      handleResponse (response) {
-        console.log(response.Events[1].EventName);
+    Polymer({
+      is: 'issues-page',
+      properties: {
+        events: {
+          type: Object
+        }
+      },
+      ready: function () {
+        
+      },
+      _handleResponse: function (e) {
+        const resp = e.detail.response;
+        this.events = resp;
+        // this.$.getIssuesAjax.generateRequest();
       }
+    });
 
-      ready () {
-        super.ready();
-        var response = this;
-        $.ajax({
-          context: this,
-          url: 'https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/',
-          method: 'GET',
-          success: function (response) {
-            console.log(response);
-            this.handleResponse(response);
-          },
-          error: function (xhr, errorText, errorResponse) {
-            console.log(xhr.responseText);
-          }
-        });
-      }
+  </script>
+</dom-module>
 
+<dom-module id="single-event">
+  <template>
+  <style is="custom-layout" include="shared-styles iron-flex iron-flex-alignment">
+    .flex {
+      /*max-width: 33.3333% !important;*/
     }
+  </style>
+  <iron-ajax
+      id="getIssuesAjax"
+      auto
+      url="https://gabezjlby1.execute-api.us-west-2.amazonaws.com/Hacktest/listissues"
+      method="get"
+      handle-as="json"
+      on-response="_handleResponse"
+      debounce-duration="300"></iron-ajax>
+  <div class="layout vertical">
+    <template is="dom-repeat" id="single-event-inner" items="{{events}}">
+      <div class="flex">
+        <div class="card">
+          <h3>{{item.issueName}}</h3>
+          <h5>{{item.Author}}</h5>
+          <p>{{item.Story}}</p>
+        </div>
+      </div>
+    </template>
+  </div>
+  </template>
+  <script>
+  Polymer({
+    is: 'single-event',
+    properties: {
+      events: {
+        type: Object
+      }
+    },
+    ready: function () {
 
-    window.customElements.define(IssuesPage.is, IssuesPage);
+    },
+     _handleResponse: function (e) {
+        const resp = e.detail.response;
+        this.events = resp;
+        // this.$.getIssuesAjax.generateRequest();
+      }
+  })
   </script>
 </dom-module>
