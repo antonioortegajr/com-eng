@@ -18,7 +18,7 @@ This solution aims to solve the issue presented by Chris Sjoblom regarding Local
 
   ###### Description:
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Amazon is a highly scalable and low cost service host. Through them, we are able to use an API Gateway as well as API that allows for the Frontend and Mobile application to be made to Restful standards which allows future developers to contribute along with current developers.
+  Amazon is a highly scalable and low cost service host. Through them, we are able to use their API Gateway service that allows for the Frontend and Mobile application to use Restful standards which allows future developers to contribute along with current developers.
 
 2. #### Frontend:
   * Material Design
@@ -57,4 +57,4 @@ This solution aims to solve the issue presented by Chris Sjoblom regarding Local
 ### Summary:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-This application provides a solution to the issue presented by Chris Sjoblom regarding Local Government Engagement among the community by providing a user friendly application which will allow members of the community that wish to have their issues heard. With this application, users will be able to communicate concerns and suggest solutions to community problems to the City Council without having to physically be present. The City Council members will also be able to consider more input from community members on issues that are important to them, as well as helps set priorities for City Council agendas.
+This application provides a solution to the issue presented by Chris Sjoblom regarding Local Government Engagement among the community by providing a user friendly application which will allow members of the community that wish to have their issues heard. With this application, users will be able to communicate concerns and suggest solutions to community problems to the City Council without having to physically be present. The City Council members will also be able to consider more input from community members on issues that are important to them, as well as help set priorities for City Council agendas.
