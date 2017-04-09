@@ -4,6 +4,7 @@ import {
   TextInput,
   Text,
   View,
+  Modal,
   Picker,
 } from 'react-native';
 import { Card, Button, FormLabel, FormInput } from 'react-native-elements'
@@ -122,6 +123,19 @@ class Issue extends Component {
                     color="#fff"
                     title="Submit"
                 />
+                <View style={{
+                    marginTop: 120
+                }}>
+                    {/* <Modal
+                        animationType={"slide"}
+                        transparent={true}
+                        visible={true}
+                    >
+                        <View>
+                            <Text>Issue has been submit.</Text>
+                        </View>
+                    </Modal> */}
+                </View>
             </Card>
         )
     }

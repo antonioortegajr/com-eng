@@ -49,11 +49,11 @@ export function* voteIssueAsync() {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ issueID, voteUsers: auth.user.id })
+                body: JSON.stringify({ issueID, voteUsers: auth.user ? auth.user.id : "appDemo" })
             })
             .then(resp => resp.json())
             yield put({ type: VOTE_ISSUE_SUCCESS, issueID })
-            yield delay(1000)
+            yield delay(500)
             yield put({ type: REQUEST_ISSUES })
         } catch (error) {
             yield put({ type: VOTE_ISSUE_FAIL, error })

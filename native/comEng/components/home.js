@@ -47,63 +47,70 @@ class Home extends Component {
                 title='Issues'
             >
                 {
-                    this.props.issues.allIds.reduce((carry, issueId) => ([...carry, this.props.issues.byId[issueId]]),[])
-                    .map(issue => (
-                        <View
-                            key={issue.issueID}
-                        >
-                            <ListItem
-                                hideChevron
-                                containerStyle={{
-                                    height: 70,
-                                }}
-                                title={issue.issueName}
-                            />
-                            <Icon
-                                key={`${issue.issueID}-up`}
-                                containerStyle={{
-                                    position: 'absolute',
-                                    top: 2,
-                                    right: 0,
-                                    backgroundColor: "#c1c0c0",
-                                    borderRadius: 20,
-                                }}
-                                onPress={() => {
-                                    this.props.voteIssue(issue.issueID)
-                                }}
-                                underlayColor="#1EC18B"
-                                size={40}
-                                color="#fff"
-                                name="arrow-upward"
-                            />
+                    this.props.issues.allIds
+                    .reduce((carry, issueId) => ([...carry, this.props.issues.byId[issueId]]),[])
+                    .map(issue => {
+                        const hasVoted = issue.voteUsers.indexOf(this.props.user ? this.props.user.id : 'appDemo') !== -1
+                        const voteBackgroundColor =  hasVoted ? "#fafafa" : "#c1c0c0"
+                        const underlayColor =  hasVoted ? "#fafafa" : "#1EC18B"
+                        return (
                             <View
-                                style={{
-                                    position: 'absolute',
-                                    width: 40,
-                                    bottom: 2,
-                                    right: 0,
-                                    alignItems: 'center'
-                                }}
+                                key={issue.issueID}
                             >
-                                <Text
+                                <ListItem
+                                    hideChevron
+                                    containerStyle={{
+                                        height: 70,
+                                    }}
+                                    title={issue.issueName}
+                                    subtitle={issue.Author}
+                                />
+                                <Icon
+                                    key={`${issue.issueID}-up`}
+                                    containerStyle={{
+                                        position: 'absolute',
+                                        top: 2,
+                                        right: 0,
+                                        backgroundColor: voteBackgroundColor,
+                                        borderRadius: 20,
+                                    }}
+                                    onPress={() => {
+                                        !hasVoted && this.props.voteIssue(issue.issueID)
+                                    }}
+                                    underlayColor={underlayColor}
+                                    size={40}
+                                    color="#fff"
+                                    name="arrow-upward"
+                                />
+                                <View
                                     style={{
-                                        width: 20,
-                                        fontSize: 12,
-                                        color: '#fff',
-                                        backgroundColor: 'rgb(0, 122, 255)',
-                                        lineHeight: 15,
-                                        textAlign: 'center',
-                                        borderWidth: 1 + (1 / PixelRatio.get()),
-                                        borderColor: '#fefefe',
-                                        borderRadius: 17 / 2,
-                                        overflow: 'hidden',
+                                        position: 'absolute',
+                                        width: 40,
+                                        bottom: 2,
+                                        right: 0,
+                                        alignItems: 'center'
                                     }}
                                 >
-                                    {issue.Votes}
-                                </Text>
+                                    <Text
+                                        style={{
+                                            width: 20,
+                                            fontSize: 12,
+                                            color: '#fff',
+                                            backgroundColor: 'rgb(0, 122, 255)',
+                                            lineHeight: 15,
+                                            textAlign: 'center',
+                                            borderWidth: 1 + (1 / PixelRatio.get()),
+                                            borderColor: '#fefefe',
+                                            borderRadius: 17 / 2,
+                                            overflow: 'hidden',
+                                        }}
+                                    >
+                                        {issue.Votes}
+                                    </Text>
+                                </View>
                             </View>
-                        </View>
-                    ))
+                        )
+                    })
                 }
             </Card>
         )
